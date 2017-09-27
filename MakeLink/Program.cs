@@ -1,6 +1,5 @@
-﻿using IWshRuntimeLibrary;
-using Microsoft.Win32;
-using System;
+﻿using System;
+using IWshRuntimeLibrary;
 
 namespace MakeLink
 {
@@ -26,28 +25,21 @@ namespace MakeLink
                 .CreateShortcut(request.Output) as IWshShortcut;
 
             if (!string.IsNullOrWhiteSpace(request.Target))
-                shortcut.TargetPath = request.Target; // @"C:\Program Files (x86)\ProgeCAD\progeCAD 2014 Professional ENG\icad.exe";
+                shortcut.TargetPath = request.Target;
 
             if (!string.IsNullOrWhiteSpace(request.Icon))
-                shortcut.IconLocation = request.Icon; // @"E:\LoopCAD\LoopCAD.ico";
+                shortcut.IconLocation = request.Icon;
 
             if (!string.IsNullOrWhiteSpace(request.Arguments))
-                shortcut.Arguments = request.Arguments; // @"/b E:\LoopCAD\LoopCAD.scr";
+                shortcut.Arguments = request.Arguments;
 
             if (!string.IsNullOrWhiteSpace(request.WorkingDirectory))
-                shortcut.WorkingDirectory = request.WorkingDirectory; // @"E:\LoopCAD";
+                shortcut.WorkingDirectory = request.WorkingDirectory;
 
             if (!string.IsNullOrWhiteSpace(request.Description))
                 shortcut.Description = request.Description;
 
             shortcut.Save();
-
-            //RegistryKey myKey = Registry.LocalMachine.OpenSubKey(@"Computer\HKEY_CURRENT_USER\Software\ProgeCAD\progeCAD", true);
-            //if (myKey != null)
-            //{
-            //    myKey.SetValue("BLOCKSPATH", "1", RegistryValueKind.String);
-            //    myKey.Close();
-            //}
         }
 
         private static void ShowUsage()
